@@ -28,3 +28,17 @@ export class Pagers {
     return "No one is available to assign the incident to.";
   }
 }
+
+const test = new Pagers(
+  ["Rajesh", "Ranjan", "Rahee", "Kripanidhan"],
+  ["Sayantanee", "Mohanta"]
+);
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
+console.log(test.assignIncidents());
