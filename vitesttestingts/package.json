@@ -1,0 +1,17 @@
+{
+  "name": "vitesttestingts",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "rajesh",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest --coverage",
+    "start": "tsx index.ts"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^3.0.9",
+    "vitest": "^3.0.9"
+  }
+}
