@@ -17,7 +17,6 @@ export class Pager {
 
   constructor(engineers: string[], managers: string[]) {
     engineers.forEach((engineer) => {
-      console.log(engineer);
       this.engineers.push({ name: engineer, busy: false });
     });
     managers.forEach((manager) =>
@@ -27,29 +26,21 @@ export class Pager {
 
   assignIncidents(incident: string): string {
     // Add incident to pendingIncidents queue
-    if (incident === "") {
+    if (incident === "" || this.pendingIncidents.includes(incident)) {
       return "Invalid incident!";
     }
 
     this.pendingIncidents.push(incident);
 
-    // If incident exists
+    // If incident exists, assign it to engineers first and then managers
     if (this.pendingIncidents.length > 0) {
-      // Assign incidents to engineers first
-      for (const engineer of this.engineers) {
-        if (!engineer.busy) {
-          engineer.busy = true;
-          const inc = this.pendingIncidents.shift();
-          return `${inc} is assigned to ${engineer.name}!`;
-        }
-      }
-
-      // If engineers are not available, assign to managers
-      for (const manager of this.managers) {
-        if (!manager.busy) {
-          manager.busy = true;
-          const inc = this.pendingIncidents.shift();
-          return `${inc} is assigned to ${manager.name}!`;
+      for (const personList of [this.engineers, this.managers]) {
+        for (const person of personList) {
+          if (!person.busy) {
+            person.busy = true;
+            const inc = this.pendingIncidents.shift();
+            return `${inc} is assigned to ${person.name}!`;
+          }
         }
       }
     }
@@ -92,4 +83,3 @@ console.log(pager.resolveIncidents("Ranjan"));
 console.log(pager.assignIncidents("INC6"));
 console.log(pager.resolveIncidents("Sayantanee"));
 console.log(pager.resolveIncidents("Mohanta"));
-console.log(pager.assignIncidents("INC7"));
